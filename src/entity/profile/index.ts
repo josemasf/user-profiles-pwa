@@ -1,1 +1,1 @@
-export * from './Profile.d';
+export * from './Profile.types';

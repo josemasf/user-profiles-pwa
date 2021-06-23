@@ -3,8 +3,16 @@ export interface ProfileData {
     name: PersonName;
     location: Location;
     email: string;
-    login: unknown;
-    dob: unknown;
+    login: {
+        uuid: string;
+        username: string;
+        password: string;
+        salt: string;
+        md5: string;
+        sha1: string;
+        sha256: string;
+    };
+    dob: Born;
     registered: Registration;
     phone: string;
     cell: string;
@@ -31,6 +39,11 @@ export interface Picture {
     large: string
     medium: string
     thumbnail: string
+}
+
+export interface Born {
+    date: Date
+    age: number
 }
 
 export interface Location{

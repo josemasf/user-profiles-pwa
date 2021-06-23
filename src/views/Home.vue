@@ -1,5 +1,12 @@
 <template>
-  <GenerateBtn @generate-profiles="generateProfiles" />
+  <div>
+  <GenerateBtn @generate-profiles="generateProfiles"  />   
+  <v-data-table :headers="headers"
+    :items="profiles"
+    :items-per-page="5"
+    class="elevation-1">
+  </v-data-table>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,20 +22,46 @@
     profileGenerator
   }
   from '@/repository'
+import { FetchRequest } from '@/entity';
 
   @Component({
     components: {
       GenerateBtn
     }
   })
-  export default class Home extends Vue {
-
+  export default class Home extends Vue {    
     
-    async generateProfiles():Promise<void> {
+    private profiles: any = []   
+
+    private headers = [
+          {
+            text: 'Gener',
+            align: 'start',            
+            value: 'gender',
+          },
+          { text: 'Name', value: 'fullname' },
+          { text: 'Email', value: 'email' },
+          { text: 'Nat', value: 'nat' },
+          { text: 'Born', value: 'born' },
+          { text: 'Registered', value: 'registered.date' },
+        ]
       
-      const profile = await profileGenerator(process.env.VUE_APP_NUM_OF_PROFILES)
-      console.log(process.env.VUE_APP_FAKEAPP_URL)
-      console.log(profile)
+    
+    async generateProfiles():Promise<void> {     
+      const response: FetchRequest = await profileGenerator(process.env.VUE_APP_NUM_OF_PROFILES)
+
+      const pofilesMapped = response.results.map( (profile) => {
+
+        const bornDate = new Date(profile.dob.date).toLocaleString().split(' ')[0]
+        
+        return {
+          ...profile,
+          fullname: `${profile.name.title} ${profile.name.first} ${profile.name.last}`,
+          born: `${bornDate}`
+        }
+      })
+      
+      this.profiles = pofilesMapped;
     }
   }
 
