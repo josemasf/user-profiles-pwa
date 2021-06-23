@@ -2,8 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <v-btn elevation="2"
- @click="generateProfiles">Generate profiles</v-btn>
+        <v-btn elevation="2" @click="generateProfiles">Generate profiles</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -14,9 +13,9 @@
 
   @Component({  
 })
-  export default class HelloWorld extends  Vue{    
+  export default class GenerateBtn extends  Vue{    
     generateProfiles(): void{
-      console.log('genero')
+      this.$emit('generate-profiles')
     }
   }
 </script>

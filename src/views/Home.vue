@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld />
+  <GenerateBtn @generate-profiles="generateProfiles" />
 </template>
 
 <script lang="ts">
@@ -8,14 +8,28 @@
     Vue
   } from 'vue-property-decorator';
   import {
-    HelloWorld
+    GenerateBtn
   } from '@/components'
+
+  import{
+    profileGenerator
+  }
+  from '@/repository'
 
   @Component({
     components: {
-      HelloWorld
+      GenerateBtn
     }
   })
-  export default class Home extends Vue {}
+  export default class Home extends Vue {
+
+    
+    async generateProfiles():Promise<void> {
+      
+      const profile = await profileGenerator(process.env.VUE_APP_NUM_OF_PROFILES)
+      console.log(process.env.VUE_APP_FAKEAPP_URL)
+      console.log(profile)
+    }
+  }
 
 </script>

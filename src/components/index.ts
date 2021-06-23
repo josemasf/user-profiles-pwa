@@ -1,5 +1,5 @@
-import HelloWorld from './HelloWorld.vue'
+import GenerateBtn from './GenerateBtn.vue'
 
-export {HelloWorld}
+export {GenerateBtn}
 
 export default {}
