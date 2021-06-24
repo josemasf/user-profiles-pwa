@@ -1,8 +1,8 @@
 import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/GenerateBtn/GenerateBtn.vue'
+import GenerateBtn from '@/components/GenerateBtn/GenerateBtn.vue'
 
 describe('GenerateBtn.vue', () => {
-  const wrapper: any = shallowMount(HelloWorld);
+  const wrapper: any = shallowMount(GenerateBtn);
   
   describe('Events/Emits', () => {
     it('should trigger changed-status', async () => {
