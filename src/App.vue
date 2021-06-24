@@ -11,8 +11,16 @@
     >
       mdi-account-circle
     </v-icon>
-      <span class="secondary--text"><strong>User profiles</strong></span>
+      <router-link :to="{path: '/'}"><span class="secondary--text"><strong>User profiles</strong></span></router-link>
       <v-spacer></v-spacer>
+      <v-icon
+      large
+      color="yellow darken-2"
+    >
+      mdi-star
+    </v-icon>
+     <router-link :to="{path: 'favorites'}"><span class="yellow--text darken-2 right"><strong>Favorites</strong></span></router-link> 
+      
       
     </v-app-bar>
 
