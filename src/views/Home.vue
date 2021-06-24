@@ -37,10 +37,32 @@
                     </v-avatar>
                   </v-col>
                   <v-col cols="6">
-                    <Map/>
+                    <Map :latitude="Number(item.location.coordinates.latitude)" :longitude="Number(item.location.coordinates.longitude)" :id="item.login.uuid" />
                   </v-col>
-                  <v-col cols="3"></v-col>
+                  <v-col cols="3">
+                    <v-btn                      
+                      color="yellow accent-4"
+                      class="ma-2 white--text"                      
+                    >
+                      Favorite
+                      <v-icon
+                        right
+                        dark
+                      >
+                        mdi-star
+                      </v-icon>
+                    </v-btn>
+                  </v-col>
                 </v-row>
+                <v-row>
+                  <v-col class="body-1">
+                    <p>{{item.fullname}}</p>
+                    <p>{{item.location.city}}</p>
+                    <p>{{item.location.street.name}}</p>
+                    <p>{{item.phone}} - {{item.cell}}</p>
+                  </v-col>
+                </v-row>
+                
               </div>
             </v-card-text>
             <v-card-actions class="justify-end">
@@ -162,6 +184,8 @@ import { FetchRequest, Profile } from '@/entity';
     private nationalities: any = []   
     private selectedNationalities = ''
 
+    private locInfo = ''
+
     async generateProfiles():Promise<void> {     
       this.loading = true;
       const response: FetchRequest = await profileGenerator(process.env.VUE_APP_NUM_OF_PROFILES)
@@ -185,7 +209,9 @@ import { FetchRequest, Profile } from '@/entity';
       this.getFilterAvailibles()
 
       this.loading = false;
+
     }
+
 
     getFilterAvailibles(): void{
       this.genders =  Array.from([... new Set(this.profiles.map((profile: Profile) => profile.gender))])
