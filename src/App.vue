@@ -19,9 +19,7 @@
     >
       mdi-star
     </v-icon>
-     <router-link :to="{path: 'favorites'}"><span class="yellow--text darken-2 right"><strong>Favorites</strong></span></router-link> 
-      
-      
+     <router-link :to="{path: 'favorites'}"><span class="yellow--text darken-2 right"><strong>Favorites</strong></span></router-link>
     </v-app-bar>
 
     <v-main>
