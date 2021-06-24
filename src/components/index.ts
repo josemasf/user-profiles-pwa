@@ -1,4 +1,4 @@
-import GenerateBtn from './GenerateBtn.vue'
+import GenerateBtn from './GenerateBtn/GenerateBtn.vue'
 
 export {GenerateBtn}
 
