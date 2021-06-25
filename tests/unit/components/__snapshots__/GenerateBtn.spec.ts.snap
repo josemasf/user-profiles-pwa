@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenerateBtn.vue Rendering Se renderiza el componente 1`] = `
+<v-container-stub tag="div">
+  <v-row-stub tag="div" class="text-center">
+    <v-col-stub cols="12" tag="div">
+      <v-btn-stub elevation="2" tag="button" activeclass="" type="button">Generate profiles</v-btn-stub>
+    </v-col-stub>
+  </v-row-stub>
+</v-container-stub>
+`;
+
+exports[`GenerateBtn.vue Rendering should trigger changed-status 1`] = `
+<v-container>
+  <v-row class="text-center">
+    <v-col cols="12">
+      <v-btn elevation="2">Generate profiles</v-btn>
+    </v-col>
+  </v-row>
+</v-container>
+`;

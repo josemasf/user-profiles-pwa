@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map.vue Rendering Se renderiza el componente 1`] = `
+<div style="height: 200px; width: 95%;">
+  <l-map-stub options="[object Object]" center="LatLng(0, 0)" zoom="10" crs="[object Object]">
+    <l-tile-layer-stub pane="tilePane" attribution="&amp;copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors" visible="true" opacity="1" zindex="1" tilesize="256" subdomains="abc" options="[object Object]" url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" tilelayerclass="[Function]"></l-tile-layer-stub>
+    <l-marker-stub pane="markerPane" visible="true" options="[object Object]" latlng="LatLng(0, 0)" icon="[object Object]" opacity="1"></l-marker-stub>
+  </l-map-stub>
+</div>
+`;
