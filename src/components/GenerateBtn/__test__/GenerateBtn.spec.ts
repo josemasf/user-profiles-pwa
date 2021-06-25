@@ -13,4 +13,5 @@ describe('GenerateBtn.vue', () => {
       expect(wrapper.emitted('generate-profiles')).toBeTruthy();
       expect(spy).toHaveBeenCalled();
     });
+  })
 })
