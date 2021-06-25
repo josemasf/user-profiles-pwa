@@ -1,4 +1,4 @@
-import { Profile } from "../profile/profile.types";
+import { Profile } from "@/entity/profile/Profile.types";
 
 export interface FetchRequest {
     info: {
