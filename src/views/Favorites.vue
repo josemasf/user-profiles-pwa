@@ -1,6 +1,6 @@
 <template>
   <div class="favorites">
-    <v-data-table :items="favoritesProfiles" :headers="headers" :loading="true">
+    <v-data-table :items="favoritesProfiles" :headers="headers" :loading="loading">
     </v-data-table>
     <vue-json-to-csv :json-data="favoritesProfiles" :labels="{
     gender: { title: 'Género' },
