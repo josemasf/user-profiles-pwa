@@ -304,10 +304,11 @@ nat: "CH"
         Array.from(fav).forEach((profile: any)=>{
           this.favorites.push(profile.data)
         })        
-        this.loading = false
+        
       })
 
       this.favoritesProfiles = this.favorites
+      this.loading = false
     }
   }
 
