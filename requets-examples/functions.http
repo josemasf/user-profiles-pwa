@@ -1,10 +1,9 @@
-http://localhost:9999/.netlify/functions/profiles
+http://localhost:9999/.netlify/functions/create
 
 ####
 
-POST http://localhost:9999/.netlify/functions/favorites/favorites HTTP/1.1
+POST http://localhost:9999/.netlify/functions/profiles-create HTTP/1.1
 content-type: application/json
-
 {
     "name": "sample",
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
