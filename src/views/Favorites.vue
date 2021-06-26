@@ -1,8 +1,8 @@
 <template>
   <div class="favorites">
-    <v-data-table :items="favorites" :headers="headers" :loading="true">
+    <v-data-table :items="favoritesProfiles" :headers="headers" :loading="true">
     </v-data-table>
-    <vue-json-to-csv :json-data="favorites" :labels="{
+    <vue-json-to-csv :json-data="favoritesProfiles" :labels="{
     gender: { title: 'Género' },
     email: { title: 'Email' },
     nat: { title: 'Nacionalidad' },
@@ -266,7 +266,8 @@ nat: "CH"
 },
     ]*/
 
-    favorites!: any[]
+    favorites!: any[] = []
+    favoritesProfiles: any[] = []
 
     private headers = [{
         text: 'Gener',
@@ -298,24 +299,16 @@ nat: "CH"
     private loading = true
 
     async mounted() {    
-      this.favorites = []  
-      await api.readAll().then((fav) => {        
-        console.log(fav, 'fav')
+      
+      await api.readAll().then((fav) => {                
         Array.from(fav).forEach((profile: any)=>{
           this.favorites.push(profile.data)
         })        
         this.loading = false
       })
 
-      console.log(this.favorites, 'mounted')
+      this.favoritesProfiles = this.favorites
     }
-
-     get favoritesProfiles(): Profile[] {
-       console.log(this.favorites, 'getter')
-      return this.favorites;
-    }
-
-
   }
 
 </script>
