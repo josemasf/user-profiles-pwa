@@ -1,11 +1,11 @@
 <template>
   <div class="favorites">
     <v-data-table
-      :items="pofilesFavorites"
+      :items="favorites"
       :headers="headers"
     >      
     </v-data-table>
-    <vue-json-to-csv :json-data="pofilesFavorites" :labels="{
+    <vue-json-to-csv :json-data="favorites" :labels="{
     gender: { title: 'Género' },
     email: { title: 'Email' },
     nat: { title: 'Nacionalidad' },
@@ -265,7 +265,7 @@ thumbnail: "https://randomuser.me/api/portraits/thumb/women/92.jpg"
 nat: "CH"
 },
     ]*/
-    pofilesFavorites!: any[]
+    
     favorites!: any[]
 
     private headers = [
@@ -285,19 +285,6 @@ nat: "CH"
       
       await api.readAll().then((fav) =>{
         this.favorites = Array.from(fav);        
-      })       
-
-      this.pofilesFavorites = this.favorites.map( (profile) => {
-
-        const dateOfBirth = new Date(profile.dob.date).toLocaleString().split(' ')[0]
-        const registeredDate = new Date(profile.registered.date).toLocaleString().split(' ')[0]
-        
-        return {
-          ...profile,
-          fullname: `${profile.name.title} ${profile.name.first} ${profile.name.last}`,
-          born: `${dateOfBirth}`,
-          registered: `${registeredDate}`,
-        }
       })
     }
   }
