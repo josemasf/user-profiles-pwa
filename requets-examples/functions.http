@@ -16,6 +16,13 @@ content-type: application/json
 
 {
     
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+    "name": "ddsfsdfsdf",
+    "time": "Wed, 22 Oct 2015 18:27:50 GMT"
 }
+
+###
+
+GET https://pwa-profiles.netlify.app/.netlify/functions/profiles-read-all HTTP/1.1
+
+###
+

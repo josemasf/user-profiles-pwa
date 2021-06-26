@@ -42,7 +42,8 @@
                   <v-col cols="3">
                     <v-btn                      
                       color="yellow accent-4"
-                      class="ma-2 white--text"                      
+                      class="ma-2 white--text"    
+                      @click="saveFavorite(item)"                  
                     >
                       Favorite
                       <v-icon
@@ -135,6 +136,7 @@
 <script lang="ts">
   import {
     Component,
+    Emit,
     Vue,
     Watch
   } from 'vue-property-decorator';
@@ -147,9 +149,11 @@
    from '@/components/Map/Map.vue'
 
   import{
-    profileGenerator
+    profileGenerator,        
+    api
   }
-  from '@/repository'
+  from '@/repository'  
+
 import { FetchRequest, Profile } from '@/entity';
 
   @Component({
@@ -244,6 +248,14 @@ import { FetchRequest, Profile } from '@/entity';
 
       this.profiles = this.profilesOriginal.filter( (profile: Profile) => profile.nat === this.selectedNationalities)
     }    
+
+    @Emit()
+    saveFavorite(item: Profile): void{
+        api.create(item).then((response) => {
+          console.log(response)
+        })
+      
+    }
   }
 
 </script>
