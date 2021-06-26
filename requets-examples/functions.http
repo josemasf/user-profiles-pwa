@@ -1,4 +1,8 @@
-http://localhost:9999/.netlify/functions/create
+http://localhost:9999/.netlify/functions/profiles-read-all
+
+####
+
+ https://pwa-profiles.netlify.app/.netlify/functions/profiles-read-all
 
 ####
 
