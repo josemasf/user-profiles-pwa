@@ -266,7 +266,7 @@ nat: "CH"
 },
     ]*/
 
-    favorites!: any[] = []
+    favorites: any[] = []
     favoritesProfiles: any[] = []
 
     private headers = [{
