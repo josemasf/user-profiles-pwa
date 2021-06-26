@@ -1,8 +1,8 @@
 <template>
   <div class="favorites">
-    <v-data-table :items="favorites" :headers="headers" :loading="true">
+    <v-data-table :items="favoritesProfiles" :headers="headers" :loading="true">
     </v-data-table>
-    <vue-json-to-csv :json-data="favorites" :labels="{
+    <vue-json-to-csv :json-data="favoritesProfiles" :labels="{
     gender: { title: 'Género' },
     email: { title: 'Email' },
     nat: { title: 'Nacionalidad' },
@@ -29,6 +29,7 @@
   import {
     api
   } from '@/repository';
+import { Profile } from '@/entity';
 
 
   @Component({
@@ -306,6 +307,10 @@ nat: "CH"
 
         this.loading = false
       })
+    }
+
+     get favoritesProfiles(): Profile[] {
+      return this.favorites;
     }
 
 
