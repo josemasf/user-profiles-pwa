@@ -299,17 +299,18 @@ nat: "CH"
 
     async mounted() {      
       await api.readAll().then((fav) => {        
-        console.log(this.favorites)
-
+        console.log(fav, 'fav')
         Array.from(fav).forEach((profile: any)=>{
           this.favorites.push(profile.data)
-        })
-
+        })        
         this.loading = false
       })
+
+      console.log(this.favorites, 'mounted')
     }
 
      get favoritesProfiles(): Profile[] {
+       console.log(this.favorites, 'getter')
       return this.favorites;
     }
 
