@@ -8,7 +8,8 @@ exports.handler = (event, context) => {
   const client = new faunadb.Client({
     secret: process.env.FAUNADB_SERVER_SECRET
   }) 
-  const id = getId(event.path)
+  //const id = getId(event.path)
+  const id = 1
   console.log(`Function 'profile-read' invoked. Read id: ${id}`)
   return client.query(q.Get(q.Ref(`classes/profiles/${id}`)))
     .then((response) => {
