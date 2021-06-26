@@ -12,11 +12,7 @@ exports.handler = (event, context) => {
   return client.query(q.Paginate(q.Match(q.Ref('indexes/all_profiles'))))
     .then((response) => {
       const profileRefs = response.data
-      return {
-        statusCode: 200,
-        body: JSON.stringify(profileRefs)
-      }
-      /*console.log('profile refs', profileRefs)
+      console.log('profile refs', profileRefs)
       console.log(`${profileRefs.length} profiles found`)
       // create new query out of profile refs. http://bit.ly/2LG3MLg
       const getAllprofileDataQuery = profileRefs.map((ref) => {
@@ -28,7 +24,7 @@ exports.handler = (event, context) => {
           statusCode: 200,
           body: JSON.stringify(ret)
         }
-      })*/
+      })
     }).catch((error) => {
       console.log('error', error)
       return {
