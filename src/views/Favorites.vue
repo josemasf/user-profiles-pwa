@@ -1,5 +1,10 @@
 <template>
   <div class="favorites">
+    <v-data-table
+      :items="pofilesFavorites"
+      :headers="headers"
+    >      
+    </v-data-table>
     <vue-json-to-csv :json-data="pofilesFavorites" :labels="{
     gender: { title: 'Género' },
     email: { title: 'Email' },
@@ -24,6 +29,7 @@
   } from 'vue-property-decorator';
   
   import VueJsonToCsv from 'vue-json-to-csv'
+import { api } from '@/repository';
 
 
   @Component({
@@ -33,7 +39,7 @@
   })
   export default class About extends Vue {    
     
-    favorites = [
+    /*favorites = [
     {
 gender: "male",
 name: {
@@ -258,10 +264,29 @@ thumbnail: "https://randomuser.me/api/portraits/thumb/women/92.jpg"
 },
 nat: "CH"
 },
-    ]
+    ]*/
     pofilesFavorites!: any[]
+    favorites!: any[]
 
-    created(){
+    private headers = [
+          {
+            text: 'Gener',
+            align: 'start',            
+            value: 'gender',
+          },
+          { text: 'Name', value: 'fullname' },
+          { text: 'Email', value: 'email' },
+          { text: 'Nationality', value: 'nat' },
+          { text: 'Born', value: 'born' },
+          { text: 'Registered', value: 'registered' },
+        ]
+
+    async created(){
+      
+      await api.readAll().then((fav) =>{
+        this.favorites = Array.from(fav);        
+      })       
+
       this.pofilesFavorites = this.favorites.map( (profile) => {
 
         const dateOfBirth = new Date(profile.dob.date).toLocaleString().split(' ')[0]
