@@ -1,9 +1,6 @@
 <template>
   <div class="favorites">
-    <v-data-table
-      :items="favorites"
-      :headers="headers"
-    >      
+    <v-data-table :items="favorites" :headers="headers" :loading="true">
     </v-data-table>
     <vue-json-to-csv :json-data="favorites" :labels="{
     gender: { title: 'Género' },
@@ -12,24 +9,26 @@
     born: { title: 'F.Nacimiento' },
     registered: { title: 'F.Registro' },
   }" @success="val => handleSuccess(val)" @error="val => handleError(val)">
-      <button>
-        <b>My custom button</b>
-      </button>
+      <v-btn color="primary" class="ma-2 white--text">
+        Download CSV
+        <v-icon right dark>
+          mdi-download
+        </v-icon>
+      </v-btn>
     </vue-json-to-csv>
   </div>
 </template>
 
 <script lang="ts">
-
-  
-
   import {
     Component,
-    Vue,    
+    Vue,
   } from 'vue-property-decorator';
-  
+
   import VueJsonToCsv from 'vue-json-to-csv'
-import { api } from '@/repository';
+  import {
+    api
+  } from '@/repository';
 
 
   @Component({
@@ -37,8 +36,8 @@ import { api } from '@/repository';
       VueJsonToCsv
     }
   })
-  export default class About extends Vue {    
-    
+  export default class About extends Vue {
+
     /*favorites = [
     {
 gender: "male",
@@ -265,28 +264,49 @@ thumbnail: "https://randomuser.me/api/portraits/thumb/women/92.jpg"
 nat: "CH"
 },
     ]*/
-    
+
     favorites!: any[]
 
-    private headers = [
-          {
-            text: 'Gener',
-            align: 'start',            
-            value: 'gender',
-          },
-          { text: 'Name', value: 'fullname' },
-          { text: 'Email', value: 'email' },
-          { text: 'Nationality', value: 'nat' },
-          { text: 'Born', value: 'born' },
-          { text: 'Registered', value: 'registered' },
-        ]
+    private headers = [{
+        text: 'Gener',
+        align: 'start',
+        value: 'gender',
+      },
+      {
+        text: 'Name',
+        value: 'fullname'
+      },
+      {
+        text: 'Email',
+        value: 'email'
+      },
+      {
+        text: 'Nationality',
+        value: 'nat'
+      },
+      {
+        text: 'Born',
+        value: 'born'
+      },
+      {
+        text: 'Registered',
+        value: 'registered'
+      },
+    ]
 
-    async created(){
-      
-      await api.readAll().then((fav) =>{
-        this.favorites = Array.from(fav);        
+    private loading = true
+
+    async mounted() {
+
+      await api.readAll().then((fav) => {
+        this.favorites = Array.from(fav);
+        console.log(this.favorites)
+
+        this.loading = false
       })
     }
+
+
   }
 
 </script>

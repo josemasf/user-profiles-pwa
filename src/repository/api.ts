@@ -10,7 +10,7 @@ const create = (data: any) => {
 }
 
 const readAll = () => {
-  return fetch('/.netlify/functions/profiles-read-all').then((response) => {
+  return fetch('/.netlify/functions/profiles-read-all').then((response) => {  
     return response.json()
   })
 }
