@@ -297,7 +297,8 @@ nat: "CH"
 
     private loading = true
 
-    async mounted() {      
+    async mounted() {    
+      this.favorites = []  
       await api.readAll().then((fav) => {        
         console.log(fav, 'fav')
         Array.from(fav).forEach((profile: any)=>{
