@@ -8,7 +8,7 @@
     nat: { title: 'Nacionalidad' },
     born: { title: 'F.Nacimiento' },
     registered: { title: 'F.Registro' },
-  }" >
+  }" @success="showToast(false)" @error="showToast(false)">
       <v-btn color="primary" class="ma-2 white--text">
         Download CSV
         <v-icon right dark>
@@ -16,6 +16,24 @@
         </v-icon>
       </v-btn>
     </vue-json-to-csv>
+
+     <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+    >
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -29,8 +47,6 @@
   import {
     api
   } from '@/repository';
-import { Profile } from '@/entity';
-
 
   @Component({
     components: {
@@ -70,18 +86,34 @@ import { Profile } from '@/entity';
     ]
 
     private loading = true
+    private snackbar = false
+    private text = 'CSV file generated successfully.'
+    private timeout = 2000
 
-    async mounted() {    
-      
-      await api.readAll().then((fav) => {                
-        Array.from(fav).forEach((profile: any)=>{
+    async mounted() {
+
+      await api.readAll().then((fav) => {
+        Array.from(fav).forEach((profile: any) => {
           this.favorites.push(profile.data)
-        })        
-        
+        })
+
       })
 
       this.favoritesProfiles = this.favorites
       this.loading = false
+    }
+
+    showToast(haveError: boolean): void{
+      this.snackbar = true
+
+      if(haveError){
+        this.text = "Error generating file"        
+      }
+      else{
+        this.$emit('csv-generated')
+      }
+
+      
     }
   }
 
